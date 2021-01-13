@@ -2,19 +2,18 @@
 title: "Número de óbitos de Salvador por faixa etária:"
 output: 
   flexdashboard::flex_dashboard:
- #   logo: figure/reconhecendosalvador.gif
     css: style.css
     theme: cosmo
-#    social: menu
     orientation: columns
     vertical_layout: fill
-#    source_code: embed
     runtime: shiny
+    output: html_document
 ---
 
 
 
 ```{r setup, include=FALSE}
+library(shiny)
 library(flexdashboard)
 library(ggplot2)
 library("readr")
@@ -52,7 +51,7 @@ library(rlang)   # !!sym()
 Inputs {.sidebar}
 -------------------------------------------------------------
 
-```{r}
+```{r, echo=FALSE}
 selectInput("faixa", label = "Faixa etária:",
             choices = nomes, selected = nomes[1])
 ```
@@ -60,7 +59,7 @@ selectInput("faixa", label = "Faixa etária:",
 Column
 --------------------------------------------------------------
 
-```{r,eval=TRUE}
+```{r,eval=TRUE, echo=FALSE}
 renderPlotly({
 	ggplotly(objeto <- saude_v00 %>% 
   ggplot(aes(x=`ano do óbito`,y=!!sym(input$faixa))) +
