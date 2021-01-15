@@ -1,0 +1,12 @@
+name: dbsaude_obito_fxetaria
+title: dbsaude_obito_fxetaria
+username:
+account: robsonpessoa
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3475029
+bundleId: 4100988
+url: https://robsonpessoa.shinyapps.io/dbsaude_obito_fxetaria/
+when: 1610735762.20942
+asMultiple: FALSE
+asStatic: FALSE

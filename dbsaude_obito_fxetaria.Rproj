@@ -13,3 +13,4 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
+WebsitePath: ~/R/DADOS_CDEP/dbsaude/dbsaude_obito_fxetaria

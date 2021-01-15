@@ -1,13 +1,13 @@
 ---
 title: "Número de óbitos de Salvador por faixa etária:"
+runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     css: style.css
     theme: cosmo
-    orientation: columns
-    vertical_layout: fill
-    runtime: shiny
-    output: html_document
+    orientation: rows
+#    vertical_layout: fill
+#    vertical_layout: scroll
 ---
 
 
@@ -48,17 +48,40 @@ library(rlang)   # !!sym()
 
 ```
 
-Inputs {.sidebar}
--------------------------------------------------------------
+
 
 ```{r, echo=FALSE}
 selectInput("faixa", label = "Faixa etária:",
             choices = nomes, selected = nomes[1])
 ```
+Row
+---------------------------------------------------------------
+### Gráfico 
+```{r,eval=TRUE, echo=FALSE}
+renderPlotly({
+	ggplotly(objeto <- saude_v00 %>% 
+  ggplot(aes(x=`ano do óbito`,y=!!sym(input$faixa))) +
+  geom_line(fill="#6cbfd3",color="#fac113",size=2) +
+  labs(
+    title = "",
+    x = "Ano",
+    y = "Nº"
+  ) +
+  theme(title = element_text(size = 12,colour = "#db4470"))+
+  theme(axis.title.x=element_text(size=11)) +
+  theme(axis.title.y=element_text(size=11)) +
+  theme(legend.text=element_text(size =11)) +
+  theme(axis.text=element_text(size =11))  +
+  theme(legend.position = "none")+
+  theme(panel.grid = element_blank(), axis.ticks.y = element_line())+
+  theme(panel.border = element_rect(fill=NA, color = "#64D2AA", size = 2))+
+  theme(panel.background = element_rect(fill=NA,color = "gray70", size = 2),
+        panel.grid.major = element_line(color = "gray70", size = .95),
+        panel.grid.minor = element_line(color = "gray70", size = .25)))
+})
+```
 
-Column
---------------------------------------------------------------
-
+### Gráfico {.mobile}
 ```{r,eval=TRUE, echo=FALSE}
 renderPlotly({
 	ggplotly(objeto <- saude_v00 %>% 
