@@ -86,7 +86,7 @@ renderPlotly({
 renderPlotly({
 	ggplotly(objeto <- saude_v00 %>% 
   ggplot(aes(x=`ano do óbito`,y=!!sym(input$faixa))) +
-  geom_line(fill="#6cbfd3",color="#fac113",size=2) +
+  geom_line(fill="#6cbfd3",color="#fac113",size=3) +
   labs(
     title = "",
     x = "Ano",
